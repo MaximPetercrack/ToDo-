@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http=equiv="content-type"content="text/html; charset=utf-8"/>
+	<title>ToDo-Liste </title>
+	<style>
+	         
+	</style>
+	<script>
+		     function einfügenAufgabe() {
+			 var neueAufgabe = document.createElement("div");
+			 neueAufgabe.innerHTML = document.getElementById("Feld").value;
+			 neueAufgabe.onclick = entfernenAufgabe;
+			 document.getElementById("Liste").appendChild(neueAufgabe);
+			 speichernListe();
+			 }
+			 
+			 function entfernenAufgabe() {
+			 document.getElementById("Liste").removeChild(this);
+			 speichernListe();
+			 }
+			 
+			 function speichernListe(){
+			 localStorage.gespeicherteListe = document.getElementById("Liste").innerHTML;
+			 }
+			 
+			 function ladenListe(){
+		     document.getElementById("Liste").innerHTML = localStorage.gespeicherteListe;
+			 for(var i = 0; i < Liste.children.length; i++) {
+			 Liste.children[i].onclick = entfernenAufgabe;
+			   }
+			 }
+			 
+			 
+			 
+			 
+		</script>		
+</head>
+	<body>
+		<h2>Meine ToDo-Liste</h2>
+		<input type ="text" id="Feld" value="Aufgabe eintippen"/>
+		<input type ="button" value="Einfügen" onclick="einfügenAufgabe();"/><br/>
+		
+		
+		
+		<div id="Liste" onclick="entfernenAufgabe(this);">
+		 <script>
+		     if(localStorage.gespeicherteListe){
+			    ladenListe();
+			    }
+	     </script> 
+		</div>
+		
+	</body>
+</html>
